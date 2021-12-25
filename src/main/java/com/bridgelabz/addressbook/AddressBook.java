@@ -12,9 +12,9 @@ public class AddressBook {
 			toString());
 
 	/**
-	 * create new contact method
+	 * add new contact method
 	 */
-	public void createContact(Contact con) {
+	public void addContact(Contact con) {
 		System.out.println("Enter Person Details:");
 
 		System.out.println("Enter first Name");
@@ -64,7 +64,7 @@ public class AddressBook {
 
 		AddressBook addressbook = new AddressBook();
 		System.out.println("Create New Contact");
-		addressbook.createContact(null);
+		addressbook.addContact(null);
 
 	}
 
