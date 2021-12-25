@@ -106,6 +106,6 @@ package com.bridgelabz.addressbook;
 					+ ", email=" + email + ", address=" + address + ", state=" + state + ", city=" + city + ", zip=" + zip
 					+ "]";
 		}
-
-	}
+		
+}
 
