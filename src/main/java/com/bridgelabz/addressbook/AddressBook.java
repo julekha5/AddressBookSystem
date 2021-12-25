@@ -1,11 +1,10 @@
 package com.bridgelabz.addressbook;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
-import com.bridgelabz.ab.AB.Contact;
 
 public class AddressBook {
 
@@ -152,7 +151,19 @@ public class AddressBook {
 		System.out.println("Welcome to AddressBook Program");
 		System.out.println("*******************************");
 
-		AddressBook addressbook = new AddressBook();
+		HashMap<String, AddressBook> addressBook = new HashMap<>();
+		// user choice addressBook name
+		System.out.println("*****Enter Unique Addressbook Name*****");
+
+		String addressBookNameAsKey = scanner.nextLine().toUpperCase();
+		System.out.println(addressBookNameAsKey);
+		AddressBook addressBookNameValue = new AddressBook();
+
+		/**
+		 * addressBookNameAsKey - key , addressBookNameValue- value(can create multiple
+		 * contact, edit, delete operation)
+		 */
+		addressBook.put(addressBookNameAsKey, addressBookNameValue);
 
 		boolean exit = false;
 		System.out.println("Enter Your Choice");
@@ -165,22 +176,22 @@ public class AddressBook {
 			switch (choice) {
 			case 1:
 				System.out.println("Add New Contact");
-				addressbook.addContact(null);
+				addressBook.get(addressBookNameAsKey).addContact(null);
 				break;
 			case 2:
 				System.out.println("Update Contact");
-				addressbook.editContact();
+				addressBook.get(addressBookNameAsKey).editContact();
 				break;
 			case 3:
 				System.out.println("Delete Contact");
-				addressbook.deleteByName();
+				addressBook.get(addressBookNameAsKey).deleteByName();
 				break;
 			default:
 				exit = true;
 				System.out.println("Exit Choices");
 				break;
 			}
-		}//end of while
-
-	}
-}
+		} // end of while
+		System.out.println("You are out of choice of multiple addressbook");
+	}// end of main
+}// end of AddressBook Class
