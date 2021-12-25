@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,9 +13,10 @@ public class AddressBook {
 	static Scanner scanner = new Scanner(System.in);
 	Contact contact = new Contact(toString(), toString(), toString(), toString(), toString(), toString(), toString(),
 			toString());
-    /**
-     * Create Contact Method
-     */
+
+	/**
+	 * Create Contact Method
+	 */
 	public void createContact() {
 		System.out.println("Enter Person Details:");
 
@@ -48,48 +50,55 @@ public class AddressBook {
 	 * add new contact method
 	 */
 	public void addContact(Contact con) {
-		createContact();
+		try {
 
-		System.out.println("Enter firstname and lastname");
-		String name = scanner.next() + "" + scanner.next();
+			createContact();
 
-		Iterator<Contact> iterator = listObject.listIterator();
-		while (iterator.hasNext()) {
-			Contact contacts = iterator.next();
-			if (name.equals(contacts.getFirstName() + "" + contacts.getLastName())) {
-				System.out.println("Duplicate entry add new contact press 1 ");
-			} else {
+			System.out.println("Enter firstname");
+			String fname = scanner.next();
+			System.out.println("Enter lastname");
+			String lname = scanner.next();
 
-				System.out.println("Enter Person Details:");
+			Iterator<Contact> iterator = listObject.listIterator();
+			while (iterator.hasNext()) {
+				Contact contacts = iterator.next();
+				if (fname.equalsIgnoreCase(contacts.getFirstName()) || lname.equalsIgnoreCase(contacts.getLastName())) {
+					System.out.println("Duplicate entry add new contact press 1 ");
+				} else {
 
-				System.out.println("Enter first Name");
-				String firstName = scanner.next();
+					System.out.println("Enter Person Details:");
 
-				System.out.println("Enter last Name");
-				String lastName = scanner.next();
+					System.out.println("Enter first Name");
+					String firstName = scanner.next();
 
-				System.out.println("Enter Email");
-				String email = scanner.next();
+					System.out.println("Enter last Name");
+					String lastName = scanner.next();
 
-				System.out.println("Enter phone number");
-				String phoneNumber = scanner.next();
+					System.out.println("Enter Email");
+					String email = scanner.next();
 
-				System.out.println("Enter address");
-				String address = scanner.next();
+					System.out.println("Enter phone number");
+					String phoneNumber = scanner.next();
 
-				System.out.println("Enter state");
-				String state = scanner.next();
+					System.out.println("Enter address");
+					String address = scanner.next();
 
-				System.out.println("Enter city");
-				String city = scanner.next();
+					System.out.println("Enter state");
+					String state = scanner.next();
 
-				System.out.println("Enter zip");
-				String zip = scanner.next();
+					System.out.println("Enter city");
+					String city = scanner.next();
 
-				listObject.add(new Contact(firstName, lastName, email, phoneNumber, address, state, city, zip));
-				displayContact();
+					System.out.println("Enter zip");
+					String zip = scanner.next();
+
+					listObject.add(new Contact(firstName, lastName, email, phoneNumber, address, state, city, zip));
+					displayContact();
+				}
 			}
+		} catch (Exception e) {
 		}
+
 	}
 
 	// display method
@@ -171,7 +180,6 @@ public class AddressBook {
 	// delete person by name
 	public void deleteByName() {
 		try {
-
 			System.out.println("Enter first name for delete contact:");
 			String firstName = scanner.next();
 
@@ -188,10 +196,26 @@ public class AddressBook {
 		displayContact();
 	}
 
+	// search contact
+	private void searchContact() {
+		System.out.println("Enter city name ");
+		String city = scanner.next();
+		System.out.println("Enter state name");
+		String state = scanner.next();
+
+		for (Contact result : listObject) {
+			if (city.equalsIgnoreCase(result.getCity()) || state.equalsIgnoreCase(result.getState())) {
+				System.out.println(result);
+			} else {
+				System.out.println("No such a records in adddressbook");
+			}
+		}
+	}
+
 	/*
 	 * Main method
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println("*******************************");
 		System.out.println("Welcome to AddressBook Program");
 		System.out.println("*******************************");
@@ -215,7 +239,7 @@ public class AddressBook {
 
 		while (!exit) {
 
-			System.out.println("1.Create/Add Contact\t 2.Update Contact\t 3.Delete Contact\t *.Default");
+			System.out.println("1.Create/Add Contact\t 2.Update Contact\t 3.Delete Contact\t 4.Search\t *.Default");
 
 			int choice = scanner.nextInt();
 			switch (choice) {
@@ -230,6 +254,11 @@ public class AddressBook {
 			case 3:
 				System.out.println("Delete Contact");
 				addressBook.get(addressBookNameAsKey).deleteByName();
+				break;
+			case 4:
+				System.out.println("Search Contact");
+				addressBook.get(addressBookNameAsKey).searchContact();
+				System.out.println("AddressBook name is :" + addressBookNameAsKey);
 				break;
 			default:
 				exit = true;
