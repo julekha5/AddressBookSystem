@@ -124,17 +124,40 @@ public class AddressBook {
 		displayContact();
 	}
 
+	// delete person by name
+	public void deleteByName() {
+		try {
+
+			System.out.println("Enter first name for delete contact:");
+			String firstName = scanner.next();
+
+			Iterator<Contact> iterator = listObject.listIterator();
+			while (iterator.hasNext()) {
+				Contact contacts = iterator.next();
+				if (firstName.equals(contacts.getFirstName())) {
+					listObject.remove(contacts);
+					System.out.println("Contact:" + contacts.getFirstName() + " " + "deleted successfully...");
+				}
+			} // while end
+		} catch (Exception e) {
+		}
+		displayContact();
+	}
+
 	public static void main(String[] args) {
 		System.out.println("*******************************");
 		System.out.println("Welcome to AddressBook Program");
 		System.out.println("*******************************");
 
 		AddressBook addressbook = new AddressBook();
-		System.out.println("Create New Contact");
+		System.out.println("Add New Contact");
 		addressbook.addContact(null);
 
 		System.out.println("Update Contact");
 		addressbook.editContact();
+
+		System.out.println("Delete Contact");
+		addressbook.deleteByName();
 
 	}
 
