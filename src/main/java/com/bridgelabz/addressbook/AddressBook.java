@@ -120,7 +120,7 @@ public class AddressBook {
 			} else {
 				System.out.println("Person not found");
 			}
-		}
+		} // end of while
 		displayContact();
 	}
 
@@ -144,21 +144,43 @@ public class AddressBook {
 		displayContact();
 	}
 
+	/*
+	 * Main method
+	 */
 	public static void main(String[] args) {
 		System.out.println("*******************************");
 		System.out.println("Welcome to AddressBook Program");
 		System.out.println("*******************************");
 
 		AddressBook addressbook = new AddressBook();
-		System.out.println("Add New Contact");
-		addressbook.addContact(null);
 
-		System.out.println("Update Contact");
-		addressbook.editContact();
+		boolean exit = false;
+		System.out.println("Enter Your Choice");
 
-		System.out.println("Delete Contact");
-		addressbook.deleteByName();
+		while (!exit) {
+
+			System.out.println("1.Create/Add Contact\t 2.Update Contact\t 3.Delete Contact\t *.Default");
+
+			int choice = scanner.nextInt();
+			switch (choice) {
+			case 1:
+				System.out.println("Add New Contact");
+				addressbook.addContact(null);
+				break;
+			case 2:
+				System.out.println("Update Contact");
+				addressbook.editContact();
+				break;
+			case 3:
+				System.out.println("Delete Contact");
+				addressbook.deleteByName();
+				break;
+			default:
+				exit = true;
+				System.out.println("Exit Choices");
+				break;
+			}
+		}//end of while
 
 	}
-
 }
