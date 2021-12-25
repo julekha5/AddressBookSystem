@@ -150,7 +150,7 @@ public class AddressBook {
 		System.out.println("*******************************");
 		System.out.println("Welcome to AddressBook Program");
 		System.out.println("*******************************");
-
+        //Multiple addressbook can add using hashmap
 		HashMap<String, AddressBook> addressBook = new HashMap<>();
 		// user choice addressBook name
 		System.out.println("*****Enter Unique Addressbook Name*****");
