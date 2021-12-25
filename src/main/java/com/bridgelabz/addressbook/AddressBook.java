@@ -202,9 +202,12 @@ public class AddressBook {
 		String city = scanner.next();
 		System.out.println("Enter state name");
 		String state = scanner.next();
-
+		if (listObject.isEmpty()) {
+			System.out.println("No Records!!!");
+		} 
 		for (Contact result : listObject) {
 			if (city.equalsIgnoreCase(result.getCity()) || state.equalsIgnoreCase(result.getState())) {
+				System.out.println("View persons contact by searching city or state :" );
 				System.out.println(result);
 			} else {
 				System.out.println("No such a records in adddressbook");
