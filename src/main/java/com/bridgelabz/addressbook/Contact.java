@@ -102,7 +102,7 @@ package com.bridgelabz.addressbook;
 
 		@Override
 		public String toString() {
-			return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
+			return "[firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
 					+ ", email=" + email + ", address=" + address + ", state=" + state + ", city=" + city + ", zip=" + zip
 					+ "]";
 		}

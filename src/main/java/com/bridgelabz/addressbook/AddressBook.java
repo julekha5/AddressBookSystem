@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,16 +9,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
-
-	List<Contact> listObject = new ArrayList<Contact>();
+	static final String firstName = null, lastName = null, phoneNumber = null, email = null, address = null,
+			state = null, city = null, zip = null;
+	static List<Contact> listObject = new ArrayList<Contact>();
 	static Scanner scanner = new Scanner(System.in);
-	Contact contact = new Contact(toString(), toString(), toString(), toString(), toString(), toString(), toString(),
-			toString());
 
-	/**
-	 * Create Contact Method
-	 */
-	public void createContact() {
+	static Contact contact = new Contact(firstName, lastName, phoneNumber, email, address, state, city, zip);
+
+	// create contact method
+	public static final ArrayList<Contact> createContact() {
 		System.out.println("Enter Person Details:");
 
 		System.out.println("Enter first Name");
@@ -44,19 +44,20 @@ public class AddressBook {
 		System.out.println("Enter zip");
 		String zip = scanner.next();
 		listObject.add(new Contact(firstName, lastName, email, phoneNumber, address, state, city, zip));
+		return (ArrayList<Contact>) listObject;
 	}
 
 	/**
 	 * add new contact method
 	 */
-	public void addContact(Contact con) {
+	public static ArrayList<Contact> addContact() {
 		try {
 
 			createContact();
 
-			System.out.println("Enter firstname");
+			System.out.println("Enter firstname for check duplication");
 			String fname = scanner.next();
-			System.out.println("Enter lastname");
+			System.out.println("Enter lastname for check duplication");
 			String lname = scanner.next();
 
 			Iterator<Contact> iterator = listObject.listIterator();
@@ -65,7 +66,6 @@ public class AddressBook {
 				if (fname.equalsIgnoreCase(contacts.getFirstName()) || lname.equalsIgnoreCase(contacts.getLastName())) {
 					System.out.println("Duplicate entry add new contact press 1 ");
 				} else {
-
 					System.out.println("Enter Person Details:");
 
 					System.out.println("Enter first Name");
@@ -92,17 +92,20 @@ public class AddressBook {
 					System.out.println("Enter zip");
 					String zip = scanner.next();
 
-					listObject.add(new Contact(firstName, lastName, email, phoneNumber, address, state, city, zip));
+					System.out.println("Record added");
+					listObject.add(new Contact(firstName, lastName, phoneNumber, email, address, state, city, zip));
+
 					displayContact();
+
 				}
 			}
 		} catch (Exception e) {
 		}
-
+		return (ArrayList<Contact>) listObject;
 	}
 
 	// display method
-	public Contact displayContact() {
+	public static Contact displayContact() {
 		if (listObject.isEmpty()) {
 			System.out.println("No Records!!!");
 		} else {
@@ -257,7 +260,9 @@ public class AddressBook {
 	/*
 	 * Main method
 	 */
+
 	public static void main(String[] args) throws IOException {
+		File txtFile = new File("AddressBook1.txt");
 		System.out.println("*******************************");
 		System.out.println("Welcome to AddressBook Program");
 		System.out.println("*******************************");
@@ -287,7 +292,9 @@ public class AddressBook {
 			switch (choice) {
 			case 1:
 				System.out.println("Add New Contact");
-				addressBook.get(addressBookNameAsKey).addContact(null);
+				addressBook.get(addressBookNameAsKey);
+				System.out.println(addressBookNameAsKey + ":");
+				FileHandling.writeTxtData(txtFile, addContact().toString());
 				break;
 			case 2:
 				System.out.println("Update Contact");
