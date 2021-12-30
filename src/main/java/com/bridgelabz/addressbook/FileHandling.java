@@ -82,14 +82,13 @@ public class FileHandling {
 	//write JSON data
 	public static void writeJsonData(File file, ArrayList<Contact> contacts) {
 		try {
-
 			Gson gson = new Gson();
 			String jsonString = gson.toJson(contacts);
 			System.out.println("JsonString :: " + jsonString);
-
+			
 			FileWriter fileWriter = new FileWriter(file);
-
 			fileWriter.write(jsonString);
+			
 			System.out.println("Json Data written");
 			fileWriter.close();
 		} catch (IOException e) {

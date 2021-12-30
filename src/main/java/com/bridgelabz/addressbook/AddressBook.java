@@ -295,7 +295,7 @@ public class AddressBook {
 				System.out.println("Add New Contact");
 				addressBook.get(addressBookNameAsKey);
 				System.out.println(addressBookNameAsKey + ":");
-	            FileHandling.writeJsonData(jsonFile,addContact());
+	            FileHandling.writeJsonData(jsonFile,addContact());//JSON data write
 				break;
 			case 2:
 				System.out.println("Update Contact");
