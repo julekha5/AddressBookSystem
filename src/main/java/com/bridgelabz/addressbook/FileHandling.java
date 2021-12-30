@@ -6,9 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import com.google.gson.Gson;
 
 enum EFileNames {
-	TXT_FILE_NAME("AddressBook1.txt");
+	TXT_FILE_NAME("AddressBook1.txt"),
+	JSON_FILE_NAME("AddressBook1.json");
 
 	final String fileName;
 
@@ -25,6 +27,8 @@ public class FileHandling {
 
 	public static void main(String[] args) {
 		File txtFile = new File(EFileNames.TXT_FILE_NAME.getConstant());
+		File jsonFile = new File(EFileNames.JSON_FILE_NAME.getConstant());
+
 		try {
 			if (txtFile.createNewFile()) {
 				System.out.println("new file is created");
@@ -32,6 +36,8 @@ public class FileHandling {
 				System.out.println("file is exist");
 			}
 			writeTxtData(txtFile, addContact().toString());
+			writeJsonData(jsonFile, addContact());
+
 			readTxtData(txtFile);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -71,5 +77,23 @@ public class FileHandling {
 			e.printStackTrace();
 		}
 
+	}
+	
+	//write JSON data
+	public static void writeJsonData(File file, ArrayList<Contact> contacts) {
+		try {
+
+			Gson gson = new Gson();
+			String jsonString = gson.toJson(contacts);
+			System.out.println("JsonString :: " + jsonString);
+
+			FileWriter fileWriter = new FileWriter(file);
+
+			fileWriter.write(jsonString);
+			System.out.println("Json Data written");
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

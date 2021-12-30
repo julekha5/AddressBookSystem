@@ -262,7 +262,8 @@ public class AddressBook {
 	 */
 
 	public static void main(String[] args) throws IOException {
-		File txtFile = new File("AddressBook1.txt");
+        File jsonFile = new File("AddressBook1.json");
+
 		System.out.println("*******************************");
 		System.out.println("Welcome to AddressBook Program");
 		System.out.println("*******************************");
@@ -294,7 +295,7 @@ public class AddressBook {
 				System.out.println("Add New Contact");
 				addressBook.get(addressBookNameAsKey);
 				System.out.println(addressBookNameAsKey + ":");
-				FileHandling.writeTxtData(txtFile, addContact().toString());
+	            FileHandling.writeJsonData(jsonFile,addContact());
 				break;
 			case 2:
 				System.out.println("Update Contact");

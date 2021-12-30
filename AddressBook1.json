@@ -1,0 +1,20 @@
+[
+{"firstName":"Rupali",
+  "lastName":"Mohite",
+  "phoneNumber":"rups@gmail.com",
+  "email":"9898767654",
+  "address":"Chakan",
+  "state":"MH",
+  "city":"Pune",
+  "zip":"456789"
+ },
+
+{
+"firstName":"Pooja",
+"lastName":"B",
+"phoneNumber":"098765234",
+"email":"puja@gmail.com",
+"address":"Hadapsar",
+"state":"MH","city":"Pune","zip":"345465"
+},
+]
